@@ -1,66 +1,12 @@
-## Foundry
+You can use the [audit-report-templating](https://github.com/Cyfrin/audit-report-templating) repo to create a minimal PDF audit report, or do something more custom. 
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
-
-```shell
-$ forge build
+1. Add all your findings to a markdown file like `2023-09-01-password-store-report.md`
+   1. Add the metadata you see at the top of that file
+   2. Update whenever you see `YOUR_NAME_HERE`
+2. Install [pandoc](https://pandoc.org/installing.html) & [LaTeX](https://www.latex-project.org/get/)
+3. Download [eisvogel.latex](https://github.com/Cyfrin/audit-report-templating/blob/main/eisvogel.latex) and add to your templates directory (should be `~/.pandoc/templates/`)
+4. Add your logo to the directory as a pdf named `logo.pdf`
+5. Run this command:
 ```
-
-### Test
-
-```shell
-$ forge test
-```
-
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
+pandoc 2023-09-01-password-store-report.md -o report.pdf --from markdown --template=eisvogel --listings
 ```
